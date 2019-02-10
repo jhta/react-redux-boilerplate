@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
+import { StoreContext, createUseConnect } from 'react-use-redux'
 import { color, space } from 'styled-system'
 import theme, { useTheme } from 'theme'
+import store from 'store'
+import { selectors as todoSelectors, actions as todoActions } from 'reducers/todo'
 
 const Box = styled.div`
   ${color}
@@ -10,15 +13,16 @@ const Box = styled.div`
 
 const Index = () => (
   <ThemeProvider theme={theme}>
-    <Box bg="tomato" color="white" p={[4]}>
-      <p>Hello World!</p>
-      <Todo />
-    </Box>
+    <StoreContext.Provider value={store}>
+      <Box bg="tomato" color="white" p={[4]}>
+        <p>Hello World!</p>
+        <Todo />
+      </Box>
+    </StoreContext.Provider>
   </ThemeProvider>
 )
 
-function useInputForm(defaultList = []) {
-  const [list, useList] = useState(defaultList)
+function useInputForm(defaultList = [], action) {
   const [text, useText] = useState('')
 
   const handleChange = event => {
@@ -28,14 +32,13 @@ function useInputForm(defaultList = []) {
 
   const handleSubmitIfEnterPressed = event => {
     if (pressedEnter(event)) {
-      useList([...list, { text }])
+      action({ text })
       useText('')
     }
   }
 
   return {
     text,
-    list,
     handleChange,
     handleSubmitIfEnterPressed,
   }
@@ -43,15 +46,26 @@ function useInputForm(defaultList = []) {
 
 const pressedEnter = event => event.key === 'Enter'
 
-const defaultList = [{ text: 'Cat' }, { text: 'Dog' }, { text: 'Bug' }]
+const mapStateToProps = ({ todo }) => {
+  return {
+    todos: todoSelectors.getTodos(todo),
+    count: todoSelectors.getTodosCount(todo),
+  }
+}
 
+const mapDispatchToProps = dispatch => ({
+  addTodo: text => dispatch(todoActions.add(text)),
+})
+
+const useConnect = createUseConnect(mapStateToProps, mapDispatchToProps)
 function Todo() {
-  const { text, list, handleChange, handleSubmitIfEnterPressed } = useInputForm(defaultList)
+  const { todos, addTodo } = useConnect()
 
+  const { text, handleChange, handleSubmitIfEnterPressed } = useInputForm(todos, addTodo)
   return (
     <div>
       <input value={text} onChange={handleChange} onKeyPress={handleSubmitIfEnterPressed} />
-      <TodoList list={list} />
+      <TodoList list={todos} />
     </div>
   )
 }
