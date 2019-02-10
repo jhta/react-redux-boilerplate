@@ -1,4 +1,26 @@
 {
-  "extends": ["standard", "standard-react"],
- 
+  "extends": ["standard", "standard-react", "prettier/react"],
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/prop-types": 0,
+    "comma-dangle": ["error", "always-multiline"],
+    "linebreak-style": ["error", "unix"],
+    "no-console": "off",
+    "no-var": "error",
+    "operator-linebreak": ["error", "before", { "overrides": { "=": "after" } }],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "react/jsx-no-undef": ["error"],
+    "react/jsx-uses-vars": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-quotes": ["error","prefer-double"],
+    "semi": ["error", "never"]
+  }
 }
