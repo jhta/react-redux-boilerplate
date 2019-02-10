@@ -1,19 +1,15 @@
 import React, { useState } from 'react'
-import styled, { ThemeProvider } from 'styled-components'
-import { StoreContext, createUseConnect } from 'react-use-redux'
+import styled from 'styled-components'
+import { createUseConnect } from 'react-use-redux'
 import { color, space } from 'styled-system'
-import theme, { useTheme } from 'theme'
-import store from 'store'
+import { Box, Flex } from '@rebass/grid'
+
+import { useTheme } from 'theme'
 import { selectors as todoSelectors, actions as todoActions } from 'reducers/todo'
 import { asPage } from 'lib'
 
-const Box = styled.div`
-  ${color}
-  ${space}
-`
-
 const Index = () => (
-  <Box bg="tomato" color="white" p={[4]}>
+  <Box width={[1]} bg="tomato" color="white" p={[4]}>
     <p>Hello World!</p>
     <Todo />
   </Box>

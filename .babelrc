@@ -10,7 +10,8 @@
           "reducers": "./store/reducers",
           "store": "./store",
           "components": "./components",
-          "lib": "./lib"
+          "lib": "./lib",
+          "ui": "./components/ui"
         }
       }]
   ]
