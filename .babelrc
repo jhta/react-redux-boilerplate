@@ -8,7 +8,9 @@
         "alias": {
           "theme": "./theme",
           "reducers": "./store/reducers",
-          "store": "./store"
+          "store": "./store",
+          "components": "./components",
+          "lib": "./lib"
         }
       }]
   ]

@@ -5,6 +5,7 @@ import { color, space } from 'styled-system'
 import theme, { useTheme } from 'theme'
 import store from 'store'
 import { selectors as todoSelectors, actions as todoActions } from 'reducers/todo'
+import { asPage } from 'lib'
 
 const Box = styled.div`
   ${color}
@@ -12,14 +13,10 @@ const Box = styled.div`
 `
 
 const Index = () => (
-  <ThemeProvider theme={theme}>
-    <StoreContext.Provider value={store}>
-      <Box bg="tomato" color="white" p={[4]}>
-        <p>Hello World!</p>
-        <Todo />
-      </Box>
-    </StoreContext.Provider>
-  </ThemeProvider>
+  <Box bg="tomato" color="white" p={[4]}>
+    <p>Hello World!</p>
+    <Todo />
+  </Box>
 )
 
 function useInputForm(defaultList = [], action) {
@@ -100,4 +97,4 @@ function Item({ text }) {
     </StyledItem>
   )
 }
-export default Index
+export default asPage(Index)
