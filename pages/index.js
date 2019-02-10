@@ -1,38 +1,12 @@
-import React, { useState, useContext } from 'react'
-import styled, { ThemeProvider, ThemeContext } from 'styled-components'
+import React, { useState } from 'react'
+import styled, { ThemeProvider } from 'styled-components'
 import { color, space } from 'styled-system'
-import { get } from 'lodash'
-
-const theme = {
-  fontSizes: [12, 14, 16, 24, 32, 48, 64, 96, 128],
-  space: [
-    // margin and padding
-    0,
-    4,
-    8,
-    16,
-    32,
-    64,
-    128,
-    256,
-  ],
-  colors: {
-    blue: '#07c',
-    red: '#e10',
-  },
-}
+import theme, { useTheme } from 'theme'
 
 const Box = styled.div`
   ${color}
   ${space}
 `
-
-function useTheme(query = '', defaultValue = null) {
-  const localTheme = useContext(ThemeContext)
-  return get(localTheme, query, defaultValue)
-}
-
-const getFromTheme = () => useTheme
 
 const Index = () => (
   <ThemeProvider theme={theme}>
