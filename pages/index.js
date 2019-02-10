@@ -1,4 +1,6 @@
-export default () => (
+import React from 'react'
+
+const Index = () => (
   <div>
     <style jsx>{`
       p {
@@ -8,3 +10,5 @@ export default () => (
     <p>Hello World!</p>
   </div>
 )
+
+export default Index

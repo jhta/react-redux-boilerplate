@@ -1,0 +1,6 @@
+node_modules
+.next
+*.json
+*.spec.js
+__test__
+dist
