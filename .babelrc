@@ -12,7 +12,9 @@
           "store": "./store",
           "components": "./components",
           "lib": "./lib",
-          "ui": "./components/ui"
+          "ui": "./components/ui",
+          "services": "./services",
+          "config": "./config"
         }
       }]
   ]
