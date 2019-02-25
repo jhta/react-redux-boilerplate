@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { space, border, borderColor } from 'styled-system'
 
-import { useTheme } from 'theme'
+import useTheme from 'react-use-theme'
 
 import Item from 'components/pages/default/TodoItem'
 
